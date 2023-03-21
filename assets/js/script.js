@@ -1,5 +1,6 @@
 // global variables
-var apiURL = 'http://api.openweathermap.org/geo/1.0/direct?q= '' q '' &limit=5&appid={b89c09787bf9106df63088418a47c76b}'; //https://openweathermap.org/forecast5 
+var weatherURL = 'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={b89c09787bf9106df63088418a47c76b}';
+var locationURL = ''
 var weatherEl = document.querySelector('#weather');
 var buttonsEl = document.querySelector('#buttons');
 
@@ -8,12 +9,11 @@ var displayWeather = function (text) {
 };
 
 var renderButtons = function() {
-    var searchedPoke = getSearchedWeather();
+    var searchedWeather = getSearchedWeather();
     for (var i = 0; i < searchedWeather.length; i++) {
         var button = document.createElement('button');
-        button.textContent = searchedWeather[i].//result weather?;
-        button.dataset.id = searchedWeather[i].//result id?;
-        
+        button.textContent = searchedWeather[i].weather;
+        button.dataset.id = searchedWeather[i].id;
     }
 };
 
@@ -27,20 +27,45 @@ var setSearchedWeather = function(text) {
     localStorage.setItem('searchedWeather', JSON.stringify(searchedWeather));
 };
 
+var toJSON = function (response) {
+    return response.json();
+};
 
-var getWeather = function () {
-  fetch (apiURL)
-    .then(function (response) {
-        return response.json();
-    }) 
-    .then (function (data) {
-        displayWeather(data.weather);
-        setSearchedWeather(data);
-    })
-    .catch(function (err) {
-        console.log(err);
-    })
+// var renderLocation = function (data) {
+//     // RENDER IMAGE
+// };
+
+var renderWeather = function (data) {
+// TODO: DO SOMETHINGcreate/append
+    getLocation(data.name);
 };
 
 
-getWeather();
+var fetchWeather = function () {
+  fetch (weatherURL, {
+          headers: {
+            Accept: "application/json",
+          },
+        })
+      .then(toJSON);
+      .then(renderWeather);
+  };
+
+
+
+
+
+    // .then(function (response) {
+    //     return response.json();
+    // }) 
+    // .then (function (data) {
+    //     displayWeather(data.weather);
+    //     setSearchedWeather(data);
+    // })
+    // .catch(function (err) {
+    //     console.log(err);
+    // })
+
+
+
+fetchWeather();
