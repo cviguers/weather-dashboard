@@ -8,22 +8,37 @@
 </head>
 <body>
     <!-- search -->
-    <h1>Search</h1>
+    <h1>Search for city:</h1>
     <div id="search-container">
         <form id="search">
-            <input type="text" id="q" placeholder="Search Term">
-            <button type="submit" class="btn btn-search">search</button>
+            <input type="text" id="searched-city" placeholder="Search Term">
+            <button type="submit" class="btn" id="search-btn">search</button>
         </form>
+        <div id="history">
+            <button class="btn" type="button" id="clear-history">clear history</button>
+            <h2></h2>
+        </div>
     </div>
 
     <!-- results -->
-    <h2>Results</h2>
+    <h1>Results</h1>
     <div id="results-container">
-        <!-- results go here in DOM -->
+        <!-- current weather -->
+        <div id="current-weather">
+            <div id="current-date"></div>
+            <div id="current-temp"></div>
+            <div id="current-wind"></div>
+            <div id="current-humidity"></div>
+            <div id="current-icon"></div>
+        </div>
+        <!-- 5 day forecast -->
+        <div id="future-forecast"></div>
     </div>
 
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
-    <script src="path/to/dayjs/dayjs.min.js"></script>
 </body>
 </html>

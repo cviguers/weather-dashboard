@@ -6,6 +6,16 @@ var searchEl = document.querySelector('#search-container');
 var historyEl = document.querySelector('#history');
 var currentWeatherEl = document.querySelector('#current-weather');
 var futureForecastEl = document.querySelector('#future-forecast');
+var currentDateEl = document.querySelector('#current-date');
+var currentTempEl = document.querySelector('#current-temp');
+var currentWindEl = document.querySelector('#current-wind');
+var currentHumidityEl = document.querySelector('#current-humidity');
+var currentIconEl = document.querySelector('#current-icon');
+var searchedCity = document.querySelector('#searched-city');
+
+
+
+
 
 // get local storage for  previously searched towns on page load
 // var getSearchedWeather = function () {
@@ -28,13 +38,15 @@ var renderCurrentWeather = function(data) {
     var temp = data.list[i].main.temp;
     var wind = data.list[i].wind.speed;
     var humidity = data.list[i].main.humidity;
-    var icon = data.list[i].weather[0].icon;
+    // var icon = data.list[i].weather[0].icon;
 
     // putting api weather info on page
-    currentWeatherEl.textContent = dayjs();
-    currentWeatherEl.textContent = 
-    searchEl.appendChild(currentWeatherEl);
-    }
+    // currentIconEl.innerHTML = icon;
+    currentDateEl.textContent = "dayjs().format('DD/MM/YYYY')";
+    currentTempEl.textContent = "temp: " + temp; "F";
+    currentWindEl.textContent = "wind: " + wind + "MPH";
+    currentHumidityEl.textContent = "humidity: " + humidity + "%";
+}
 };
 
 // api fetch request to get weather data
