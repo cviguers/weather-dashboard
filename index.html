@@ -8,15 +8,22 @@
 </head>
 <body>
     <!-- search -->
-    <div class="search-container">
-        <h1>Search</h1>
+    <h1>Search</h1>
+    <div id="search-container">
         <form id="search">
             <input type="text" id="q" placeholder="Search Term">
+            <button type="submit" class="btn btn-search">search</button>
         </form>
     </div>
 
-    <div id="weather"></div>
-    <div id="buttons"></div>
+    <!-- results -->
+    <h2>Results</h2>
+    <div id="results-container">
+        <!-- results go here in DOM -->
+    </div>
+
+    
     <script src="./assets/js/script.js"></script>
+    <script src="path/to/dayjs/dayjs.min.js"></script>
 </body>
 </html>
