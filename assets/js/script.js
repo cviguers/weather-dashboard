@@ -1,37 +1,39 @@
 // global variables
-var resultsEl = document.querySelector('#results-container');
-var searchEl = document.querySelector('#search-container');
-var historyEl = document.querySelector('#history');
 var currentWeatherEl = document.querySelector('#current-weather');
 var futureForecastEl = document.querySelector('#future-forecast');
-var currentDateInput = document.querySelector('#current-date');
 var currentTempInput = document.querySelector('#current-temp');
 var currentWindInput = document.querySelector('#current-wind');
 var currentHumidityInput = document.querySelector('#current-humidity');
 var currentIconInput = document.querySelector('#current-icon');
 var cityNameInput = document.querySelector('#searched-city');
 var searchBtn = document.querySelector('#search-btn');
+var currentHeader = document.querySelector('#current-header')
 
-
-
-
-// show 5 day forecast //////////// sort large hourly data into 5 1 hour times over 5 days
-// var renderForecast = function(data) {
-//     for (var i = 0; i < data.length; i++) {
-//         console.log(data);
-//         // shortcuts to all api categories
-//         // var list = data.list[i];
-//         // var temp = data.list[i].main.temp; 
-//         // var wind = data.list[i].wind.speed;
-//         // var humidity = data.list[i].main.humidity;
-//         // var time = ;
-//         // var icon = data.list[i].weather.icon;
-
-//         // putting api forecast info on page
-//         var forecastCard = document.createElement('div');
-//         futureForecastEl.appendChild(forecastCard);
-//     };
-// };
+// show 5 day forecast
+var renderForecast = function(data) {
+    // converts each forecast into var arr
+    var arr = data.list;
+    for (var i = 0; i < arr.length; i++) {
+        
+        // splitting the array so you can only see each day at 12
+        if (arr[i].dt_txt.split(' ')[1] === '12:00:00') {
+            // putting api forecast info on page
+            var temp5El = document.createElement('p');
+            var wind5El = document.createElement('p');
+            var humidity5El = document.createElement('p');
+            temp5El.textContent = "temp: " + arr[i].main.temp + "F";
+            wind5El.textContent = "wind: " +  arr[i].wind.speed + "MPH";
+            humidity5El.textContent = "humidity: " +  arr[i].main.humidity + "%";
+            var icon5 = arr[i].weather[0].icon;
+            var icon5El = $('<img>').attr('src', 'http://openweathermap.org/img/w/' + icon5 + '.png');
+            futureForecastEl.append(temp5El);
+            futureForecastEl.append(wind5El);
+            futureForecastEl.append(humidity5El);
+            // futureForecastEl.append(icon5El);
+            futureForecastEl.classList.add("forecast-style")
+        }
+    };
+};
 
 // show current weather on screen
 var renderCurrentWeather = function(data) {
@@ -45,12 +47,12 @@ var renderCurrentWeather = function(data) {
     var icon = data.list[i].weather.icon;
 
     // putting api weather info on page
-    // currentWeatherEl.textContent = searchedCityInput;
+    currentHeader.textContent = cityNameInput + " " + time;
     currentIconInput.textContent = icon;
-    currentDateInput.textContent = time;
     currentTempInput.textContent = "temp: " + temp; "F";
     currentWindInput.textContent = "wind: " + wind + "MPH";
     currentHumidityInput.textContent = "humidity: " + humidity + "%";
+    currentWeatherEl.classList.add("currentContainer")
     }
 };
 
@@ -61,7 +63,6 @@ var toJSON = function (response) {
 var renderLatLon = function (data) {
     var latInput = data[0].lat;
     var lonInput = data[0].lon;
-    console.log(latInput)
     // api fetch request to get weather data
     var fetchWeather = function () {
         var lat = latInput
@@ -69,14 +70,12 @@ var renderLatLon = function (data) {
         var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon +"&appid=b89c09787bf9106df63088418a47c76b";
         fetch (forecastURL)
             .then(function (response) {
-                console.log(response)
                 return response.json();
             }) 
             .then (function (data) {
-                console.log(data)
                 // setSearchedWeather(data);
                 renderCurrentWeather(data);
-                // renderForecast(data);
+                renderForecast(data);
             })  
             .catch(function (err) {
                 console.log(err);
@@ -88,14 +87,12 @@ var renderLatLon = function (data) {
 // api fetch request to get city name input
 var fetchCity = function() {
     cityNameInput = cityNameInput.value
-    console.log(cityNameInput)
     var cityURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityNameInput + "&limit=1&appid=b89c09787bf9106df63088418a47c76b";
     fetch(cityURL)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        console.log(data);
         renderLatLon(data);
     })
     .catch(function (err) {
@@ -116,5 +113,3 @@ var setSearchedWeather = function(text) {
 };
 
 searchBtn.addEventListener('click', fetchCity)
-
-// fetchWeather();

@@ -1,0 +1,12 @@
+.currentContainer {
+    border-style: solid;
+    padding: 10px;
+    display: flex;
+    display:block;
+};
+
+
+.forecast-style {
+    border-style: solid;
+    display: inline-flex;
+};
