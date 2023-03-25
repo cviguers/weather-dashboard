@@ -1,12 +1,30 @@
 .currentContainer {
     border-style: solid;
     padding: 10px;
+    display: inline-block;
+    margin-left: 30%;
+    width: 100%;
+};
+
+.five-day {
     display: flex;
-    display:block;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 };
 
-
-.forecast-style {
-    border-style: solid;
-    display: inline-flex;
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    float: end;
 };
+
+.cardHolder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    float: end;
+}
