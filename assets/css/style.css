@@ -1,30 +1,39 @@
+*{
+    list-style-type: none;
+}
+
 .currentContainer {
     border-style: solid;
+    border-color: navy;
     padding: 10px;
     display: inline-block;
-    margin-left: 30%;
-    width: 100%;
+    background-color: navy;
+    width: 30%;
+    color: white
 };
 
 .five-day {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
 };
 
-.cardContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    float: end;
-};
 
 .cardHolder {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: inline-flex;
+    justify-content: space-around;
+    align-content: center;
     align-items: center;
-    float: end;
+    flex-direction: row;
+}
+
+#forecast-container {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+#history {
+    list-style-type: none;
 }

@@ -9,14 +9,22 @@ var searchBtn = document.querySelector("#search-btn");
 var currentHeader = document.querySelector("#current-header");
 var forecastContainerEl = document.querySelector("#forecast-container");
 var fiveDayEl = document.querySelector(".five-day");
+var forecastHeaderEl = document.querySelector(".forecastHeader");
 var historyList = document.querySelector(".history-container");
 historyList.textContent = "Search History";
 
 
+// show forecast header
+var renderForecastHeader = function () {
+  var forecastHeading = document.createElement('h4')
+  forecastHeading.textContent = "5 Day Forecast"
+  forecastHeaderEl.append(forecastHeading)
+}
 
 // show 5 day forecast
 var renderForecast = function (data) {
   // converts each forecast into var arr
+  renderForecastHeader()
   var arr = data.list;
   for (var i = 0; i < arr.length; i++) {
     // splitting the array so you can only see each day at 12
@@ -32,11 +40,14 @@ var renderForecast = function (data) {
       var icon5El = document.createElement("img");
       var icon5 = arr[i].weather[0].icon;
       icon5El.setAttribute("src", "http://openweathermap.org/img/w/" + icon5 + ".png")
-      temp5El.textContent = "temp: " + arr[i].main.temp + "F";
+      temp5El.textContent = "temp: " + arr[i].main.temp  + "°F";
       wind5El.textContent = "wind: " + arr[i].wind.speed + "MPH";
       humidity5El.textContent = "humidity: " + arr[i].main.humidity + "%";
-      fiveDayCard.style.border = "2px solid black";
+      fiveDayCard.style.border = "2px solid navy";
       fiveDayCard.style.display = "inline-block";
+      fiveDayCard.style.backgroundColor = "navy";
+      fiveDayCard.style.color = "white"
+      fiveDayCard.style.margin = "5px"
       fiveDayCard.append(temp5El);
       fiveDayCard.append(wind5El);
       fiveDayCard.append(humidity5El);
@@ -59,7 +70,7 @@ var renderCurrentWeather = function (data) {
     // putting api weather info on page
     currentHeader.textContent = cityNameInput + " " + time;
     currentIconInput.setAttribute("src", "http://openweathermap.org/img/w/" + icon + ".png");
-    currentTempInput.textContent = "temp: " + temp;
+    currentTempInput.textContent = "temp: " + temp + "°F";
     ("F");
     currentWindInput.textContent = "wind: " + wind + "MPH";
     currentHumidityInput.textContent = "humidity: " + humidity + "%";
@@ -83,7 +94,7 @@ var renderLatLon = function (data) {
       lat +
       "&lon=" +
       lon +
-      "&appid=b89c09787bf9106df63088418a47c76b";
+      "&appid=b89c09787bf9106df63088418a47c76b&units=imperial";
     fetch(forecastURL)
       .then(function (response) {
         return response.json();
@@ -119,32 +130,15 @@ var fetchCity = function () {
     });
 };
 
-// get local storage
-var getSearchedHistory = function() {
-    var localHistory = JSON.parse(localStorage.getItem("cityNameInput"))  || [];
-    for (var i = 0; i < localHistory.length; i++) {
-        var searchTerm = localHistory[i];
-        var newLi = document.createElement("li");
-        newLi.textContent = searchTerm;
-        historyList.append(newLi);
-    }
-};
-
-// call getSearchedHistory when the page loads
-window.addEventListener('load', function() {
-    getSearchedHistory();
-  });
-
-// set key to collect searches
-var setSearchedHistory = function (text) {
-  var searchedCity = JSON.parse(localStorage.getItem("cityNameInput"))  || [];
-  searchedCity.push(text);
-  localStorage.setItem("searchedWeather", JSON.stringify(searchedCity));
-};
-
-
-searchBtn.addEventListener("click", function(){
+var cityList = document.querySelector("#history")
+// call functions on click and collect user input for api/local storage
+searchBtn.addEventListener("click", function(event){
+    event.preventDefault();
     var searchValue = cityNameInput.value.toLowerCase();
-    setSearchedHistory(searchValue);
     fetchCity();
+    renderLocalHistory()
 })
+
+var renderLocalHistory = function() {
+
+}
