@@ -2,6 +2,26 @@
     list-style-type: none;
 }
 
+.btn:hover {
+    background-color: navy;
+}
+
+.searchbtn {
+    display: flex;
+    display: block;
+    color: white;
+    height: 30px;
+    width: 125px;
+    margin: 9px;
+    background-color: navy;
+
+}
+
+.searchbtn:hover {
+    background-color: white;
+    color: navy;
+}
+
 .currentContainer {
     border-style: solid;
     border-color: navy;

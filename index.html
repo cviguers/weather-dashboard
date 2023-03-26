@@ -18,16 +18,33 @@
         <h1 class="text-center">Weather Dashboard</h1>
       </div>
     </header>
-    <!-- search -->
-    <section class="search container container-fluid">
-        <div id="search-container">
-          <h2>Search by city:</h2>
-          <input type="text" id="searched-city" placeholder="Search City" />
-          <button class="btn btn-outline-dark" id="search-btn">search</button>
+    <!-- search -->   
+            <!-- Beginning of history cities box -->
+            <div class="card" style="width: 15rem;">
+              <ul id="city-list" class="list-group list-group-flush">
+                <!-- <li class="list-group-item"></li> -->
+              </ul>
+            </div>
+    <div class="col-8 m-2">
+      <div class="row">
+        <div class="col-3 m-2 bg-light"></div>
+          <div class="search container container-fluid">
+            <div id="search-container">
+              <h2>Search by city:</h2>
+              <input type="text" id="searched-city" placeholder="Search City" />
+              <button class="btn btn-outline-dark" id="search-btn">search</button>
+            </div>
+          </div>
+          <div class="history-container container-fluid">
+            <div class="row">
+              <div id="history city-list" class="list-group list-group-flush"></div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- results -->
+  <!-- results -->
     <!-- current weather -->
     <section class="container-fluid d-flex justify-content-center" id="current-container">
         <div id="current-weather">
@@ -45,21 +62,6 @@
       <div class="forecastHeader"></div>
       <div class="cardHolder d-flex justify-content-center">
         <div id="forecast-container"></div>
-      </div>
-    </section>
-    <section>
-     <!-- history -->
-      <div class="history-container container-fluid">
-          <div class="row">
-                  <ul id="history"></ul>
-                  <button
-                    class="btn btn-outline-dark"
-                    type="button"
-                    id="clear-history"
-                  >
-                    clear history
-                  </button>
-          </div>
       </div>
     </section>
 
