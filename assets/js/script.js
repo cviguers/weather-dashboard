@@ -153,24 +153,9 @@ var getSearchedHistory = function () {
     newLi.classList.add("searchbtn");
     newLi.style.display = "block";
     historyList.appendChild(newLi);
-    newLi.addEventListener("click", function(){
-      var fetchCityClick = function () {
-        cityNameInput = searchTerm;
-        var cityURL =
-          "http://api.openweathermap.org/geo/1.0/direct?q=" +
-          cityNameInput +
-          "&limit=1&appid=b89c09787bf9106df63088418a47c76b";
-        fetch(cityURL)
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (data) {
-            renderLatLon(data);
-          })
-          .catch(function (err) {
-            console.log(err);
-          });
-      };
+    newLi.addEventListener("click", function () {
+      var searchValue = searchTerm;
+      fetchCity(searchValue)
     })
   }
 };

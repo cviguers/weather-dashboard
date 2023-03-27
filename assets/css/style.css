@@ -23,6 +23,7 @@
 }
 
 .currentContainer {
+    margin-top: -80px;
     border-style: solid;
     border-color: navy;
     padding: 10px;

@@ -19,13 +19,7 @@
       </div>
     </header>
     <!-- search -->   
-            <!-- Beginning of history cities box -->
-            <div class="card" style="width: 15rem;">
-              <ul id="city-list" class="list-group list-group-flush">
-                <!-- <li class="list-group-item"></li> -->
-              </ul>
-            </div>
-    <div class="col-8 m-2">
+    <aside>
       <div class="row">
         <div class="col-3 m-2 bg-light"></div>
           <div class="search container container-fluid">
@@ -42,28 +36,30 @@
           </div>
         </div>
       </div>
-    </div>
+    </aside>
 
   <!-- results -->
     <!-- current weather -->
-    <section class="container-fluid d-flex justify-content-center" id="current-container">
-        <div id="current-weather">
-          <h2 id="current-header"></h2>
-          <img id="current-icon"></img>
-          <div id="current-city"></div>
-          <div id="current-date"></div>
-          <div id="current-temp"></div>
-          <div id="current-wind"></div>
-          <div id="current-humidity"></div>
+    <main>
+      <div class="container-fluid d-flex justify-content-center" id="current-container">
+          <div id="current-weather">
+            <h2 id="current-header"></h2>
+            <img id="current-icon"></img>
+            <div id="current-city"></div>
+            <div id="current-date"></div>
+            <div id="current-temp"></div>
+            <div id="current-wind"></div>
+            <div id="current-humidity"></div>
+        </div>
       </div>
-    </section>
-    <!-- 5 day forecast -->
-    <section class="container-fluid five-day">
-      <div class="forecastHeader"></div>
-      <div class="cardHolder d-flex justify-content-center">
-        <div id="forecast-container"></div>
+      <!-- 5 day forecast -->
+      <div class="container-fluid five-day">
+        <div class="forecastHeader"></div>
+        <div class="cardHolder d-flex justify-content-center">
+          <div id="forecast-container"></div>
+        </div>
       </div>
-    </section>
+    </main>
 
     <script
       src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
