@@ -42,7 +42,7 @@ var renderForecast = function (data) {
       var icon5 = arr[i].weather[0].icon;
       icon5El.setAttribute(
         "src",
-        "http://openweathermap.org/img/w/" + icon5 + ".png"
+        "https://openweathermap.org/img/w/" + icon5 + ".png"
       );
       temp5El.textContent = "temp: " + arr[i].main.temp + "°F";
       wind5El.textContent = "wind: " + arr[i].wind.speed + "MPH";
@@ -76,7 +76,7 @@ var renderCurrentWeather = function (data) {
     currentHeader.textContent = cityNameInput + " " + time;
     currentIconInput.setAttribute(
       "src",
-      "http://openweathermap.org/img/w/" + icon + ".png"
+      "https://openweathermap.org/img/w/" + icon + ".png"
     );
     currentTempInput.textContent = "temp: " + temp + "°F";
     ("F");
@@ -118,7 +118,7 @@ var renderLatLon = function (data) {
 var fetchCity = function () {
   cityNameInput = cityNameInput.value;
   var cityURL =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
     cityNameInput +
     "&limit=1&appid=b89c09787bf9106df63088418a47c76b";
   fetch(cityURL)
