@@ -27,7 +27,7 @@ THEN I am again presented with current and future conditions for that city
 ```
 
 ## Preview
-<img src="./assets/images/correctscreenshot.png"/>
+<img src="./assets/images/screenshot.png"/>
 
 ## Deployed Application
 https://cviguers.github.io/weather-dashboard/
