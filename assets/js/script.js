@@ -162,26 +162,26 @@ var getSearchedHistory = function () {
       // clear current search
       results.innerHTML = "";
       newResults(historyVal)
-      results.style.display = "block";
     });
   }
 };
 
 var newResults = function (historyVal) {
-  var cityURL =
-    "https://api.openweathermap.org/geo/1.0/direct?q=" +
-    historyVal +
-    "&limit=1&appid=b89c09787bf9106df63088418a47c76b";
-  fetch(cityURL)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      renderLatLon(data);
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+  console.log(historyVal)
+    var cityURL =
+      "https://api.openweathermap.org/geo/1.0/direct?q=" +
+      historyVal +
+      "&limit=1&appid=b89c09787bf9106df63088418a47c76b";
+    fetch(cityURL)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        renderLatLon(data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
 };
 
 // set up local storage keys
