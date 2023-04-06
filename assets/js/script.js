@@ -11,7 +11,7 @@ var forecastContainerEl = document.querySelector("#forecast-container");
 var fiveDayEl = document.querySelector(".five-day");
 var forecastHeaderEl = document.querySelector(".forecastHeader");
 var historyList = document.querySelector(".history-container");
-historyList.textContent = "Search History";
+var results = document.querySelector(".main-results")
 
 // show forecast header
 var renderForecastHeader = function () {
@@ -38,20 +38,20 @@ var renderForecast = function (data) {
       var wind5El = document.createElement("li");
       var humidity5El = document.createElement("li");
       var icon5El = document.createElement("img");
-      time5El.textContent = arr[i].dt_txt;
+      time5El.textContent = arr[i].dt_txt
+      time5El.style.fontWeight = "bold";
       var icon5 = arr[i].weather[0].icon;
       icon5El.setAttribute(
         "src",
         "https://openweathermap.org/img/w/" + icon5 + ".png"
       );
-      temp5El.textContent = "temp: " + arr[i].main.temp + "°F";
-      wind5El.textContent = "wind: " + arr[i].wind.speed + "MPH";
-      humidity5El.textContent = "humidity: " + arr[i].main.humidity + "%";
-      fiveDayCard.style.border = "2px solid navy";
-      fiveDayCard.style.display = "inline-block";
-      fiveDayCard.style.backgroundColor = "navy";
-      fiveDayCard.style.color = "white";
-      fiveDayCard.style.margin = "5px";
+      temp5El.textContent = "Temp: " + arr[i].main.temp + "°F";
+      wind5El.textContent = "Wind: " + arr[i].wind.speed + "MPH";
+      humidity5El.textContent = "Humidity: " + arr[i].main.humidity + "%";
+      fiveDayCard.style.backgroundColor = "#2f3746"
+      fiveDayCard.style.color = "white"
+      fiveDayCard.style.margin = "2%"
+      fiveDayCard.style.height = "20%"
       fiveDayCard.append(time5El);
       fiveDayCard.append(temp5El);
       fiveDayCard.append(wind5El);
@@ -78,10 +78,10 @@ var renderCurrentWeather = function (data) {
       "src",
       "https://openweathermap.org/img/w/" + icon + ".png"
     );
-    currentTempInput.textContent = "temp: " + temp + "°F";
+    currentTempInput.textContent = "Temp: " + temp + "°F";
     ("F");
-    currentWindInput.textContent = "wind: " + wind + "MPH";
-    currentHumidityInput.textContent = "humidity: " + humidity + "%";
+    currentWindInput.textContent = "Wind: " + wind + "MPH";
+    currentHumidityInput.textContent = "Humidity: " + humidity + "%";
     currentWeatherEl.classList.add("currentContainer");
   }
 };
@@ -139,7 +139,9 @@ searchBtn.addEventListener("click", function (event) {
   var searchValue = cityNameInput.value;
   fetchCity();
   setSeachedHistory(searchValue);
-  getSearchedHistory(searchValue);
+  getSearchedHistory(searchValue)
+  historyList.style.display = "block";
+  results.style.display = "block";
 });
 
 // receive local storage and apply to page
@@ -147,17 +149,39 @@ var getSearchedHistory = function () {
   var localHistory = JSON.parse(localStorage.getItem("searchedCities")) || [];
   for (var i = 0; i < localHistory.length; i++) {
     var searchTerm = localHistory[i];
+    // make searched cities buttons
     var newLi = document.createElement("button");
     newLi.textContent = searchTerm;
     newLi.classList.add("btn");
-    newLi.classList.add("searchbtn");
-    newLi.style.display = "block";
+    newLi.classList.add("listbtn");
     historyList.appendChild(newLi);
+    var historyVal = newLi.textContent;
+
+    // make history buttons new searches
     newLi.addEventListener("click", function () {
-      var searchValue = searchTerm;
-      fetchCity(searchValue)
-    })
+      // clear current search
+      results.innerHTML = "";
+      newResults(historyVal)
+      results.style.display = "block";
+    });
   }
+};
+
+var newResults = function (historyVal) {
+  var cityURL =
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
+    historyVal +
+    "&limit=1&appid=b89c09787bf9106df63088418a47c76b";
+  fetch(cityURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      renderLatLon(data);
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
 };
 
 // set up local storage keys

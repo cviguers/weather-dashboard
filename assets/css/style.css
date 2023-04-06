@@ -2,44 +2,39 @@
     list-style-type: none;
 }
 
+
 .btn:hover {
-    background-color: navy;
-}
-
-.searchbtn {
-    display: flex;
-    display: block;
+    background-color: rgb(77, 88, 98);
     color: white;
-    height: 30px;
-    width: 125px;
-    margin: 9px;
-    background-color: navy;
-
 }
 
-.searchbtn:hover {
-    background-color: white;
-    color: navy;
+.listbtn {
+    color: white;
+    background-color: rgb(156, 156, 206);
+    width: 100%;
+    margin: 1%
+}
+
+
+#search-btn {
+    margin: 2px;
+}
+
+.history-container {
+    flex-wrap: wrap;
 }
 
 .currentContainer {
-    margin-top: -80px;
     border-style: solid;
-    border-color: navy;
-    padding: 10px;
     display: inline-block;
-    background-color: navy;
-    width: 30%;
-    color: white
 };
 
 .five-day {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: space-between;
     flex-direction: row;
 };
-
 
 .cardHolder {
     display: inline-flex;
@@ -55,6 +50,7 @@
     flex-direction: row;
 }
 
-#history {
-    list-style-type: none;
+.topTitle {
+    background-image: linear-gradient(to left, rgb(3, 0, 61) , rgb(97, 97, 218));
+    width: 100%;
 }
