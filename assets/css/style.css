@@ -1,56 +1,49 @@
-*{
-    list-style-type: none;
+* {
+  list-style-type: none;
 }
 
-
 .btn:hover {
-    background-color: rgb(77, 88, 98);
-    color: white;
+  background-color: rgb(77, 88, 98);
+  color: white;
 }
 
 .listbtn {
-    color: white;
-    background-color: rgb(156, 156, 206);
-    width: 100%;
-    margin: 1%
+  color: white;
+  background-color: rgb(156, 156, 206);
+  width: 100%;
+  margin: 1%;
 }
 
-
 #search-btn {
-    margin: 2px;
+  margin: 2px;
 }
 
 .history-container {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .currentContainer {
-    border-style: solid;
-    display: inline-block;
-};
+  border-style: solid;
+  display: inline-block;
+}
 
 .five-day {
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-direction: row;
-};
+  display: inline-flex;
+  justify-content: space-between;
+}
 
 .cardHolder {
-    display: inline-flex;
-    justify-content: space-around;
-    align-content: center;
-    align-items: center;
-    flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 #forecast-container {
-    display: inline-flex;
-    align-items: center;
-    flex-direction: row;
+  display: flex;
+  align-items: center;
 }
 
 .topTitle {
-    background-image: linear-gradient(to left, rgb(3, 0, 61) , rgb(97, 97, 218));
-    width: 100%;
+  background-image: linear-gradient(to left, rgb(3, 0, 61), rgb(97, 97, 218));
+  width: 100%;
 }
